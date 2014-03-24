@@ -1,0 +1,42 @@
+<configuration>
+	<property> 
+		<name>mongo.input.split.create_input_splits</name>
+		<value>false</value>
+		<description>Turns off input splitting--good for single node.</description>
+	</property>
+	<property>
+	  <name>mongo.job.input.format</name>
+	  <value>com.mongodb.hadoop.MongoInputFormat</value>
+	</property>
+	<property>
+	  <name>mongo.input.uri</name>
+	  <value>mongodb://localhost:27017/test/cda/</value>
+	</property>	
+	<property>
+	  <name>mongo.job.mapper</name>
+	  <value>first.hadmgo.FirstHadMgoMapper</value>
+	</property>	
+	<property>
+	  <name>mapreduce.job.map.class</name>
+	  <value>first.hadmgo.FirstHadMgoMapper</value>
+	</property>	
+	<property>
+	  <name>mongo.job.reducer</name>
+	  <value>first.hadmgo.FirstHadMgoReducer</value>
+	</property>	<property>
+	  <name>mongo.job.output.key</name>
+	  <value>org.apache.hadoop.io.Text</value>
+	</property>
+	<property>
+	  <name>mongo.job.output.value</name>
+	  <value>org.apache.hadoop.io.Text</value>
+	</property>
+	<property>
+	  <name>mongo.output.uri</name>
+	  <value>mongodb://localhost:27017/test/patient/</value>
+	</property>
+	<property>
+	  <name>mongo.job.output.format</name>
+	  <value>com.mongodb.hadoop.MongoOutputFormat</value>
+	</property>
+</configuration>

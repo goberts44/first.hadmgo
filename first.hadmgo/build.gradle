@@ -1,0 +1,49 @@
+apply plugin:'application'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+def sourceCompatibility = 1.5
+def title = 'First Hadoop Mongo'
+def main = 'first.hadmgo.FirstHadMgo'
+def version = '1.0.0'
+
+def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath;
+def remoteMavenRepo = 'http://repo1.maven.org/maven2';
+
+// 05.
+
+//def mainClassName = main
+
+jar {
+	manifest {
+		attributes 'Implementation-Title': title, 'Implementation-Version': version, 'Main-Class': main
+	}
+}
+
+repositories {
+		maven {url remoteMavenRepo}
+		maven {url localMavenRepo}
+}
+
+dependencies {
+	compile 'org.apache.hadoop:hadoop-client:2.3.0'
+	compile 'mongo-hadoop:mongo-hadoop-core:1.2.1'
+	compile 'mongo-hadoop:mongo-hadoop:1.0.0'
+	compile 'org.mongodb:mongo-java-driver:2.11.4'
+	compile 'args4j:args4j:2.0.26'
+	compile 'commons-collections:commons-collections:3.2'
+	compile 'javax.inject:javax.inject:1'
+	compile 'com.google.inject:guice:3.0'
+	compile 'ch.qos.logback:logback-classic:1.1.1'
+	compile 'ch.qos.logback:logback-core:1.1.1'
+	testCompile 'junit:junit:4.+'
+}
+
+compileJava { source = file('src/main/java') }
+
+// test { systemProperties 'property': 'value' }
+
+uploadArchives {
+	repositories { flatDir { dirs 'repos' } }
+}
